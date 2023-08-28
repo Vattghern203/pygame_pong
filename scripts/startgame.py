@@ -16,12 +16,10 @@ class StartGame:
 
         self.display = pygame.display.set_mode([WIDTH, HEIGHT])
 
-        self.player1 = Player(0, 100, 30, 150, 1, "assets/player1.png")
-        self.player2 = Player(1000, 100, 30, 150, 1, "assets/player2.png")
+        self.player1 = Player("assets/player1.png", 1, 110, 0)
+        self.player2 = Player("assets/player2.png", 1, 1280, 0, False)
 
-        print(self.player1.rect)
-        print(self.player2.rect)
-
+        print(self.player1.sprite.rect)
 
         self.scene = "menu"
         self.current_scene = Menu()
@@ -34,10 +32,7 @@ class StartGame:
                 self.scene = "game"
                 self.current_scene = Game()
 
-                self.current_scene.all_sprites.add(self.player1.sprite)
-                self.current_scene.all_sprites.add(self.player2.sprite)
-
-                self.current_scene.update()
+                self.current_scene.all_sprites.add(self.player1.sprite, self.player2.sprite)
 
             elif self.scene == "game" and self.current_scene.active == False:
 
@@ -48,7 +43,25 @@ class StartGame:
                 self.scene = "menu"
                 self.current_scene = Menu()
 
+            self.player1.handle_velocity()
+            self.player1.handle_bounds()
+            self.player2.handle_bounds()
+
             for event in pygame.event.get():
+
+                if event.type == pygame.KEYDOWN:
+
+                    if event.key == pygame.K_s:
+
+                        self.player1.velocity = 6
+                        self.player1.sprite.rect.y += 10
+                    
+                    elif event.key == pygame.K_w:
+
+                        self.player1.velocity = -6
+                        self.player1.sprite.rect.y -= 10
+
+
                 if event.type == pygame.QUIT:
                     pygame.quit()
                 self.current_scene.events(event)
@@ -57,4 +70,5 @@ class StartGame:
 
             self.current_scene.draw()
             self.current_scene.update()
+
             pygame.display.flip()

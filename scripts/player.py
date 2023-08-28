@@ -1,20 +1,15 @@
-import pygame
-
 from scripts.entity import Entity
-from scripts.obj import Obj
 
 class Player(Entity):
 
-    def __init__(self, x: float, y: float, width: float, height: float, velocity: float, img:str) -> None:
-        super().__init__(x, y, width, height)
+    def __init__(self, img:str, velocity:float, posX:float, posY:float, controlled: bool=True) -> None:
+        super().__init__(img, posX, posY)
 
         self.velocity = velocity
-        self.sprite = Obj(img=img)
+        self.posX = posX
+        self.posY = posY
+        self.controlled = controlled
 
-    def move(self, distance:float):
+    def handle_velocity(self):
 
-        self.x += distance
-
-    def change_velocity(self, value:float):
-
-        self.velocity += value
+        self.sprite.rect.y += self.velocity
