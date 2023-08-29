@@ -11,14 +11,12 @@ class Entity:
         self.sprite = Obj(img=img, right=posX, top=posY)
         self.heigth = 150
 
-    def handle_bounds(self):
+    def handle_bounds(self, window_height:float=HEIGHT):
 
         if (self.sprite.rect.y <= 0):
 
             self.sprite.rect.y = 0
 
-        elif (self.sprite.rect.y > (HEIGHT - self.heigth)):
+        elif (self.sprite.rect.y >= (window_height - self.heigth)):
 
-            self.sprite.rect.y = HEIGHT - self.heigth
-
-        
+            self.sprite.rect.y = window_height - self.heigth

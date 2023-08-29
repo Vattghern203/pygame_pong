@@ -13,3 +13,22 @@ class Player(Entity):
     def handle_velocity(self):
 
         self.sprite.rect.y += self.velocity
+
+    def handle_NPC(self, window_height=720):
+
+        if (self.sprite.rect.y <= 0):
+
+            self.sprite.rect.y = 0
+            
+            self.velocity = 6
+            self.sprite.rect.y -= 10
+
+
+        elif (self.sprite.rect.y >= (window_height - self.heigth)):
+
+            self.sprite.rect.y = window_height - self.heigth
+
+            self.velocity = -6
+            self.sprite.rect.y += 10
+
+        self.sprite.rect.y += self.velocity
