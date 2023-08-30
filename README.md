@@ -16,9 +16,9 @@ Before you begin, make sure you have the following installed:
 First, you need to clone the repository containing your Pygame project. Open your terminal and run the following command:
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/Vattghern203/pygame_pong.git
 
-cd <repository_directory>
+cd pygame_pong
 
 ```
 ### 2. Create the Virtual Enviroment(venv)
@@ -28,7 +28,7 @@ python -m venv venv
 venv/Scripts
 ```
 
-on CMD use: ```bash activate..bat```
+on CMD use: ```bash activate.bat```
 
 on PowerShell: ```bash .\activate.ps1```
 
@@ -43,4 +43,9 @@ pip install -r requirements.txt
 ### 4. Run the Game
 
 ```bash
-python main.py```
+python main.py
+```
+
+### 5. Enjoy!
+
+🎮
